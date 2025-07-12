@@ -14,11 +14,5 @@ import { MatButtonModule } from '@angular/material/button'
 })
 export class Header {
 
-  constructor(
-    private router: Router
-  ){}
-  
-  navigate(url: string){
-    this.router.navigateByUrl(url)
-  }
+  constructor(){}
 }

@@ -1,5 +1,5 @@
 <div style="display: flex;flex-direction: row;gap: 4px;">
-    <button mat-raised-button (click)="navigate('/home/home')" >Home</button>
-    <button mat-raised-button (click)="navigate('/home/dashboard')">Dashboard</button>
-    <button mat-raised-button (click)="navigate('/client/investment')">Investment</button>
+    <button mat-raised-button routerLink="/home/home" routerLinkActive="active">Home</button>
+    <button mat-raised-button routerLink="/home/dashboard" routerLinkActive="active">Dashboard</button>
+    <button mat-raised-button routerLink="/client/investment" routerLinkActive="active">Investment</button>
 </div>
