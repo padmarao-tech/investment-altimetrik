@@ -1,38 +1,8 @@
 <div style="display: flex; flex-direction: column;gap: 4px;margin: 5px;">
-    <h1 style="text-align: center;">Add Investment</h1>
-    <div [formGroup]="fg" style="display: flex; flex-direction: row;flex-wrap: wrap;gap: 4px;">
-        <mat-form-field>
-            <mat-label>Asset Type</mat-label>
-            <input type="text" matInput formControlName="assetType" required>
-            @if(fg.get('assetType').hasError('required') && fg.get('assetType').touched){
-                <mat-error>
-                    Asset Type is <b>required *</b>
-                </mat-error>
-            }
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Quantity</mat-label>
-            <input type="number" matInput formControlName="quantity" required>
-            @if(fg.get('quantity').hasError('required') && fg.get('quantity').touched){
-                <mat-error>
-                    Quantity is <b>required *</b>
-                </mat-error>
-            }
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Purchase Price</mat-label>
-            <input type="number" matInput formControlName="purchasePrice" required>
-            @if(fg.get('purchasePrice').hasError('required') && fg.get('purchasePrice').touched){
-                <mat-error>
-                    Purchase Price is <b>required *</b>
-                </mat-error>
-            }
-        </mat-form-field>
-        <input type="date" formControlName="date" required>
-        <button mat-raised-button [disabled]="this.fg.invalid" (click)="submit()">Save</button>
-    </div>
-    <mat-divider></mat-divider>
     <h1 style="text-align: center;">Investments</h1>
+    <div style="display: flex;justify-content: end;">
+        <button mat-raised-button (click)="addInvestment(null)" style="text-align: right;">Add Investment</button>
+    </div>
     <table border="1px" style="border-collapse: collapse;">
         <thead>
             <tr>

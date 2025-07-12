@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>{{ data? 'Update ': 'Save ' }} Investment</h2>
+<mat-dialog-content>
+    <div [formGroup]="fg" style="display: flex; flex-direction: row;flex-wrap: wrap;gap: 4px;">
+        <mat-form-field>
+            <mat-label>Asset Type</mat-label>
+            <input type="text" matInput formControlName="assetType" required>
+            @if(fg.get('assetType').hasError('required') && fg.get('assetType').touched){
+                <mat-error>
+                    Asset Type is <b>required *</b>
+                </mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Quantity</mat-label>
+            <input type="number" matInput formControlName="quantity" required>
+            @if(fg.get('quantity').hasError('required') && fg.get('quantity').touched){
+                <mat-error>
+                    Quantity is <b>required *</b>
+                </mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Purchase Price</mat-label>
+            <input type="number" matInput formControlName="purchasePrice" required>
+            @if(fg.get('purchasePrice').hasError('required') && fg.get('purchasePrice').touched){
+                <mat-error>
+                    Purchase Price is <b>required *</b>
+                </mat-error>
+            }
+        </mat-form-field>
+        <input type="date" formControlName="date" required>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button [disabled]="this.fg.invalid" (click)="submit()">Save</button>
+    <button mat-raised-button (click)="close()">Close</button>
+
+</mat-dialog-actions>

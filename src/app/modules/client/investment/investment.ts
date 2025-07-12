@@ -6,8 +6,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { Data } from '../../../core/services/data';
+import { InvestmentEdit } from './investment-edit/investment-edit';
 @Component({
   selector: 'app-investment',
   imports: [
@@ -26,7 +27,6 @@ import { Data } from '../../../core/services/data';
 })
 export class Investment {
 
-  fg: FormGroup;
   investments: any[];
   constructor(
     private dataService: Data,
@@ -34,43 +34,25 @@ export class Investment {
   ) {}
 
   ngOnInit(){
-    this.formInitialize();
     this.getInvestments();
-  }
-
-  formInitialize(){
-    this.fg = new FormGroup({
-      assetType: new FormControl(null, Validators.required),
-      quantity: new FormControl(null, Validators.required),
-      purchasePrice: new FormControl(null, Validators.required),
-      date: new FormControl(null, Validators.required),
-    })
-  }
-
-  submit(){
-    console.log(this.fg.value);
-    
-    if(this.fg.invalid){
-      return
-    }
-
-    const formValues = Object.assign({}, this.fg.value);
-    if(!confirm('Asset Type: '+ formValues.assetType + ', Quantity: '+formValues.quantity +', Purchase Price: '+formValues.purchasePrice +', Date: '+ formValues.date)){
-      return
-    }
-    this.dataService.saveInvestment(formValues).subscribe(res => {
-      if(res.message == 'Saved Successfully'){
-        this.fg.reset();
-        this.getInvestments();
-      }
-    })
   }
 
   getInvestments(){
     this.dataService.getInvestments().subscribe(res => {
-      console.log(res);
-      
       this.investments = res;
+    })
+  }
+
+  addInvestment(data: any){
+    const dialogConf: MatDialogConfig = {
+      width: '400px',
+      data: data
+    }
+    const dialog = this.dialog.open(InvestmentEdit, data)
+    dialog.afterClosed().subscribe(res => {
+      if(res.message == 'Saved Successfully'){
+        this.getInvestments();
+      }
     })
   }
 }
