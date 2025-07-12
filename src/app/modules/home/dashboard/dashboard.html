@@ -1,0 +1,17 @@
+<div style="display: flex; flex-direction: column;gap: 4px;margin: 5px;">
+    <h1 style="text-align: center;">Dashboard</h1>
+    @if(datePurchase){
+        <h3>Purchase</h3>
+        <div style="display: flex; flex-direction: row;gap: 4px;margin: 5px;justify-content: center;">
+            <app-echart-graph [data]="datePurchase" [chartType]="'line'"></app-echart-graph>
+            <app-echart-graph [data]="datePurchase" [chartType]="'bar'"></app-echart-graph>
+        </div>
+    }
+    @if(dateQuantity){
+        <h3>Quantity</h3>
+        <div style="display: flex; flex-direction: row;gap: 4px;margin: 5px;justify-content: center;">
+            <app-echart-graph [data]="dateQuantity" [chartType]="'line'"></app-echart-graph>
+            <app-echart-graph [data]="dateQuantity" [chartType]="'bar'"></app-echart-graph>
+        </div>
+    }
+</div>
